@@ -10,21 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_19_025936) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_072517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "topics", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "node_name", null: false
-    t.integer "node_id", null: false
-    t.boolean "excellent"
+  create_table "replies", force: :cascade do |t|
+    t.string "body"
     t.boolean "deleted"
-    t.integer "replies_count", default: 0, null: false
-    t.integer "likes_count", default: 0
-    t.integer "last_reply_user_id"
-    t.string "last_reply_user_login"
-    t.datetime "replied_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

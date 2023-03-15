@@ -1,0 +1,31 @@
+<h1>
+    话题详情
+</h1>
+<p>
+    <strong>标题</strong>
+    <%= @topic.title%>
+</p>
+<p>
+    <strong>内容</strong> 
+    <%= @topic.content%> 
+</p>
+
+<%= link_to '编辑', edit_topic_path(@topic)%>
+<%= link_to "Destroy", topic_path(@topic), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+ } %>
+<h2>添加评论：</h2>
+<%= form_with model: [@topic, @topic.replies.build ] do |form|%>
+    <p>
+        <%= from.label :reply %><br>
+        <%= from.text_field :reply %>
+    </p>
+     <p>
+        <%= form.label :body %><br>
+        <%= form.text_area :body %>
+    </p>
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>
